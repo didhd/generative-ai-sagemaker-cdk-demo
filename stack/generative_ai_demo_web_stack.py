@@ -8,6 +8,7 @@ from aws_cdk import (
     aws_ssm as ssm,
     aws_ecs as ecs,
     aws_ecs_patterns as ecs_patterns,
+    aws_ecr_assets as ecr_assets,
 )
 from constructs import Construct
 
@@ -85,7 +86,7 @@ class GenerativeAiDemoWebStack(Stack):
         )
 
         # Build Dockerfile from local folder and push to ECR
-        image = ecs.ContainerImage.from_asset("web-app")
+        image = ecs.ContainerImage.from_asset("web-app", platform=ecr_assets.Platform.LINUX_AMD64)
 
         # Create Fargate service
         fargate_service = ecs_patterns.ApplicationLoadBalancedFargateService(
