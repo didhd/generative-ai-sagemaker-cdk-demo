@@ -109,6 +109,12 @@ class GenerativeAiDemoWebStack(Stack):
             resources = ["arn:aws:ssm:*"],
             )
         )  
+        fargate_service.task_definition.add_to_task_role_policy(iam.PolicyStatement(
+            effect=iam.Effect.ALLOW,
+            actions=["sagemaker:InvokeEndpoint"],
+            resources=["*"]
+            )
+        )
         
         fargate_service.task_definition.add_to_task_role_policy(iam.PolicyStatement(
             effect=iam.Effect.ALLOW,
