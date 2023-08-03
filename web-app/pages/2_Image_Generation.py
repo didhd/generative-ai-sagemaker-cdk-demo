@@ -53,16 +53,16 @@ if st.button("Generate image"):
             except runtime.exceptions.InternalFailure as erri:
                 st.error("InternalFailure:", erri)
 
-            except requests.exceptions.ServiceUnavailable as errs:
+            except runtime.exceptions.ServiceUnavailable as errs:
                 st.error("ServiceUnavailable:", errs)
 
-            except requests.exceptions.ValidationError as errv:
+            except runtime.exceptions.ValidationError as errv:
                 st.error("ValidationError:", errv)
 
-            except requests.exceptions.ModelError as errm:
+            except runtime.exceptions.ModelError as errm:
                 st.error("ModelError", errm)
 
-            except requests.exceptions.ModelNotReadyException as err:
+            except runtime.exceptions.ModelNotReadyException as err:
                 st.error("ModelNotReadyException", err)
 
         st.success("Done!")
